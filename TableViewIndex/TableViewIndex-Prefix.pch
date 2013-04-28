@@ -12,3 +12,26 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 #endif
+
+#define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+
+#define iPhone5_0 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(320, 568), [[UIScreen mainScreen] currentMode].size) : NO)
+
+#define IOS6   ([[UIDevice currentDevice].systemVersion doubleValue] >= 6.0f ? YES : NO)
+
+#define IS_ARC  (__has_feature(obj_arc))
+
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 50000
+#define __d_weak weak
+#else
+#define __d_weak unsafe_unretained
+#endif
+
+#define RELEASE_SAFELY(__POINTER) { if(__POINTER) {[__POINTER release]; __POINTER = nil; }}
+
+#ifdef DEBUG
+#   define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#   define DLog(...)
+#endif
+
